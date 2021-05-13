@@ -3,6 +3,8 @@ package isi.died.parcial01.ejercicio02.dominio;
 import java.util.ArrayList;
 import java.util.List;
 
+import ejercicio02.resolucion.NoCumpleCorrelatividadException;
+
 public class Materia {
 	private static Integer ID_GENERATOR=0;
 
@@ -79,5 +81,16 @@ public class Materia {
 	
 	public void addCorrelativaCursada(Materia m) {
 		this.correlativasCursada.add(m);
+	}
+
+	public void puedeRendir(Alumno a) throws NoCumpleCorrelatividadException {
+		// TODO Auto-generated method stub
+		boolean valido;
+		for(Materia materia : correlativasRendir) {
+			valido = a.getExamenes().stream().anyMatch(examen -> examen.getMateria().equals(materia) && examen.getNota() > 6);
+			
+			if(!valido) throw new NoCumpleCorrelatividadException();				
+			
+		}
 	}
 }

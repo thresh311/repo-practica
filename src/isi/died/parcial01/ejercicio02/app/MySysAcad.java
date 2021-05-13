@@ -1,5 +1,7 @@
 package isi.died.parcial01.ejercicio02.app;
 
+import ejercicio02.resolucion.FallaAlGuardarException;
+import ejercicio02.resolucion.NoCumpleCorrelatividadException;
 import isi.died.parcial01.ejercicio02.dominio.*;
 
 
@@ -24,8 +26,10 @@ public interface MySysAcad {
 	 * crea una nueva instancia de Inscripcion y 
 	 * asigna la inscripcion a la lista de inscripciones del alumno, 
 	 * de la materia y del docente
+	 * @throws FallaAlGuardarException 
+	 * @throws NoCumpleCorrelatividadException 
 	 */
-	public void inscribirAlumnoExamen(Docente d,Alumno a, Materia m);
+	public void inscribirAlumnoExamen(Docente d,Alumno a, Materia m) throws FallaAlGuardarException, NoCumpleCorrelatividadException;
 	
 
 }

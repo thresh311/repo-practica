@@ -3,7 +3,10 @@ package isi.died.parcial01.ejercicio02.app;
 import java.util.ArrayList;
 import java.util.List;
 
+import ejercicio02.resolucion.FallaAlGuardarException;
+import ejercicio02.resolucion.NoCumpleCorrelatividadException;
 import isi.died.parcial01.ejercicio02.db.BaseDeDatos;
+import isi.died.parcial01.ejercicio02.db.BaseDeDatosExcepcion;
 import isi.died.parcial01.ejercicio02.dominio.*;
 
 
@@ -44,13 +47,22 @@ public class MySysAcadImpl implements MySysAcad {
 	}
 
 	@Override
-	public void inscribirAlumnoExamen(Docente d, Alumno a, Materia m) {
+	public void inscribirAlumnoExamen(Docente d, Alumno a, Materia m) throws FallaAlGuardarException, NoCumpleCorrelatividadException {
 		Examen e = new Examen();
+		
+		m.puedeRendir(a);
+		
 		a.addExamen(e);
 		d.agregarExamen(e);
 		m.addExamen(e);
+		
 		// DESCOMENTAR Y gestionar excepcion
-		// DB.guardar(e);
+		try {
+			DB.guardar(e);
+		} catch (BaseDeDatosExcepcion e1) {
+			// TODO Auto-generated catch block
+			throw new FallaAlGuardarException();
+		}
 	}
 	
 

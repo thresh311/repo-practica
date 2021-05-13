@@ -3,6 +3,8 @@ package isi.died.parcial01.ejercicio02.app;
 import java.util.ArrayList;
 import java.util.List;
 
+import ejercicio02.resolucion.FallaAlGuardarException;
+import ejercicio02.resolucion.NoCumpleCorrelatividadException;
 import isi.died.parcial01.ejercicio02.dominio.Alumno;
 import isi.died.parcial01.ejercicio02.dominio.Docente;
 import isi.died.parcial01.ejercicio02.dominio.Materia;
@@ -91,7 +93,15 @@ public class App {
 		
 		sistema.inscribirAlumnoCursada(prof1, a1, m1,2020);
 
-		sistema.inscribirAlumnoExamen(prof1, a1, m1);
+		try {
+			sistema.inscribirAlumnoExamen(prof1, a1, m1);
+		} catch (FallaAlGuardarException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoCumpleCorrelatividadException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 

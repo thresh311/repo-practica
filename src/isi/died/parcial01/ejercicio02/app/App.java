@@ -13,7 +13,7 @@ public class App {
 		
 		MySysAcad sistema = new MySysAcadImpl();
 		
-		// MATERIAS
+		// MATERIAS.
 		Materia m1= new Materia("Materia 100");
 		Materia m2= new Materia("Materia 200");
 		m2.addCorrelativaCursada(m1);

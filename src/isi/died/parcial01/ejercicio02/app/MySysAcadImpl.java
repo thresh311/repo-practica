@@ -80,7 +80,8 @@ public class MySysAcadImpl implements MySysAcad {
 	@Override
 	public Double promedio(Integer cilcoLectiv, Materia m) {
 		// TODO Auto-generated method stub
-		return null;
+		return m.getExamenes().stream().filter(e -> e.getFecha().getYear() == cilcoLectiv).map(e -> (double) e.getNota()).reduce(0d, (acum, n) -> acum+n)
+				/m.getExamenes().stream().filter(e -> e.getFecha().getYear() == cilcoLectiv).count();
 	}
 
 

@@ -2,6 +2,7 @@ package isi.died.parcial01.ejercicio02.app;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import ejercicio02.resolucion.FallaAlGuardarException;
 import ejercicio02.resolucion.NoCumpleCorrelatividadException;
@@ -63,6 +64,30 @@ public class MySysAcadImpl implements MySysAcad {
 			// TODO Auto-generated catch block
 			throw new FallaAlGuardarException();
 		}
+	}
+	
+	
+	public void registrarNota(Examen e, int nota) {
+		e.setNota(nota);
+		
+		if(nota >= 6) {
+			e.getAlumno().marcarPromocionada(e.getMateria());
+		}
+		
+	}
+
+
+	@Override
+	public Double promedio(Integer cilcoLectiv, Materia m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public List<Examen> buscarExamenesNoAprobados(Docente a, Materia m) {
+		// TODO Auto-generated method stub
+		return m.getExamenes().stream().filter(e -> e.getDocente().equals(a) && e.getNota() < 6)
+				.sorted((e1,e2) -> e1.getFecha().compareTo(e2.getFecha())).collect(Collectors.toList());
 	}
 	
 

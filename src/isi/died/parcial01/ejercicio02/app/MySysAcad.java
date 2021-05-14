@@ -1,5 +1,7 @@
 package isi.died.parcial01.ejercicio02.app;
 
+import java.util.List;
+
 import ejercicio02.resolucion.FallaAlGuardarException;
 import ejercicio02.resolucion.NoCumpleCorrelatividadException;
 import isi.died.parcial01.ejercicio02.dominio.*;
@@ -31,5 +33,7 @@ public interface MySysAcad {
 	 */
 	public void inscribirAlumnoExamen(Docente d,Alumno a, Materia m) throws FallaAlGuardarException, NoCumpleCorrelatividadException;
 	
-
+	public Double promedio(Integer cilcoLectiv,Materia m);
+	
+	public List<Examen> buscarExamenesNoAprobados(Docente a, Materia m);
 }

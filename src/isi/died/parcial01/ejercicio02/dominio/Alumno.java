@@ -2,6 +2,7 @@ package isi.died.parcial01.ejercicio02.dominio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Alumno {
 	
@@ -51,6 +52,15 @@ public class Alumno {
 	
 	public List<Examen> getExamenes() {
 		return this.examenes;
+	}
+
+
+	public void marcarPromocionada(Materia materia) {
+		// TODO Auto-generated method stub
+		List<Inscripcion> insMateria = this.materiasCursadas.stream().filter(ins -> ins.getMateria().equals(materia))
+				.sorted((i1, i2) -> i1.getCicloLectivo().compareTo(i2.getCicloLectivo())*-1).collect(Collectors.toList());
+		
+		insMateria.get(0).setEstado(Inscripcion.Estado.PROMOCIONADO);
 	}
 
 }
